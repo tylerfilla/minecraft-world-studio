@@ -46,6 +46,14 @@ public class TagByteArray extends TagBase {
 		return this.data;
 	}
 	
+	/**
+	 * Sets the data of this tag to that of the given.
+	 * @param data The desired data for this tag
+	 */
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+	
 	@Override
 	public EnumTagType getType() {
 		return EnumTagType.TAG_Byte_Array;

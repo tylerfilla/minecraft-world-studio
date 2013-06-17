@@ -52,6 +52,12 @@ public class TagList extends TagBase {
 	
 	@Override
 	public void writeData(DataOutput output) throws IOException {
+		output.writeByte(this.listType.getTypeId());
+		output.writeInt(this.children.size());
+		
+		for (TagBase tag : this.children) {
+			tag.writeData(output);
+		}
 	}
 	
 	@Override

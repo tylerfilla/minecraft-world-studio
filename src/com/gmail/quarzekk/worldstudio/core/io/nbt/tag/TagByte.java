@@ -29,7 +29,7 @@ public class TagByte extends TagBase {
 	}
 	
 	/**
-	 * Constructs a new TagByte with the given value.
+	 * Constructs a new TagByte with the given.
 	 * @param value The value for this tag
 	 */
 	public TagByte(byte value) {
@@ -52,6 +52,14 @@ public class TagByte extends TagBase {
 	 */
 	public byte getValue() {
 		return this.value;
+	}
+	
+	/**
+	 * Sets the value of this tag to that of the given value.
+	 * @param value The desired value for this tag
+	 */
+	public void setValue(byte value) {
+		this.value = value;
 	}
 	
 	@Override

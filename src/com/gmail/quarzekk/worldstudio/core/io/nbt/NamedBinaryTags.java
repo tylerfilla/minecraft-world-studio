@@ -10,12 +10,11 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.tag.TagBase;
-import com.gmail.quarzekk.worldstudio.core.io.nbt.tag.TagCompound;
 import com.gmail.quarzekk.worldstudio.core.io.nbt.tag.TagEnd;
 
 public class NamedBinaryTags {
 	
-	public static void writeCompoundToStream(TagCompound compound, OutputStream outputStream) throws IOException {
+	public static void writeTagToStream(TagBase tag, OutputStream outputStream) throws IOException {
 		DataOutput output = null;
 		
 		if (outputStream instanceof DataOutputStream) {
@@ -24,7 +23,13 @@ public class NamedBinaryTags {
 			output = new DataOutputStream(outputStream);
 		}
 		
-		compound.writeData(output);
+		output.writeByte(tag.getType().getTypeId());
+		
+		if (tag.getType() != EnumTagType.TAG_End) {
+			output.writeUTF(tag.getName());
+		}
+		
+		tag.writeData(output);
 	}
 	
 	public static TagBase readTagFromStream(InputStream inputStream) throws IOException {

@@ -46,6 +46,14 @@ public class TagString extends TagBase {
 		return this.value;
 	}
 	
+	/**
+	 * Sets the value of this tag to that of the given.
+	 * @param value The desired value for this tag
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
 	@Override
 	public EnumTagType getType() {
 		return EnumTagType.TAG_String;

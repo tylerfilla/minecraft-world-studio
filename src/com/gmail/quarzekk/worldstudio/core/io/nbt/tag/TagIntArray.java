@@ -46,6 +46,14 @@ public class TagIntArray extends TagBase {
 		return this.data;
 	}
 	
+	/**
+	 * Sets the data of this tag to that of the given.
+	 * @param data The desired data for this tag
+	 */
+	public void setData(int[] data) {
+		this.data = data;
+	}
+	
 	@Override
 	public EnumTagType getType() {
 		return EnumTagType.TAG_Int_Array;

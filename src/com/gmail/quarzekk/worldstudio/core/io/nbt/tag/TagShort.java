@@ -54,6 +54,14 @@ public class TagShort extends TagBase {
 		return this.value;
 	}
 	
+	/**
+	 * Sets the value of this tag to that of the given.
+	 * @param value The desired value for this tag
+	 */
+	public void setValue(short value) {
+		this.value = value;
+	}
+	
 	@Override
 	public EnumTagType getType() {
 		return EnumTagType.TAG_Short;

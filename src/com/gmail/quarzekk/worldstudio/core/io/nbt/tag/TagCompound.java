@@ -55,6 +55,22 @@ public class TagCompound extends TagBase {
 		return this.children;
 	}
 	
+	/**
+	 * Adds a child tag to this compound.
+	 * @param child The child tag to add to this compound
+	 */
+	public void addChild(TagBase child) {
+		this.children.add(child);
+	}
+	
+	/**
+	 * Removes a child tag from this compound.
+	 * @param child The child tag to be removed from this compound
+	 */
+	public void removeChild(TagBase child) {
+		this.children.remove(child);
+	}
+	
 	@Override
 	public EnumTagType getType() {
 		return EnumTagType.TAG_Compound;
@@ -70,6 +86,8 @@ public class TagCompound extends TagBase {
 				tag.writeData(output);
 			}
 		}
+		
+		output.writeByte(EnumTagType.TAG_End.getTypeId());
 	}
 	
 	@Override
