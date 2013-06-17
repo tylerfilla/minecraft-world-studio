@@ -6,6 +6,11 @@ import java.io.IOException;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.EnumTagType;
 
+/**
+ * 
+ * Represents a tag used to signal the end of a tag compound.
+ *
+ */
 public class TagEnd extends TagBase {
 	
 	/**

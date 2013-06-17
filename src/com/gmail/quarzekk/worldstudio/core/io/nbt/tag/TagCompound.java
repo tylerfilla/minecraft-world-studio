@@ -9,6 +9,11 @@ import java.util.Collection;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.EnumTagType;
 
+/**
+ * 
+ * Represents a tag capable of holding numerous other tags.
+ *
+ */
 public class TagCompound extends TagBase {
 	
 	/**

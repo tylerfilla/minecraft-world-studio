@@ -6,6 +6,11 @@ import java.io.IOException;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.EnumTagType;
 
+/**
+ * 
+ * Represents a tag capable of holding an <code>int</code> value.
+ *
+ */
 public class TagInt extends TagBase {
 	
 	/**

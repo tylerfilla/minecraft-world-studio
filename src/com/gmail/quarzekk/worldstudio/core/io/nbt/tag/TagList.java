@@ -9,6 +9,12 @@ import java.util.Collection;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.EnumTagType;
 
+/**
+ * 
+ * Represents a tag similar to TAG_Compound that contains nameless tags of a
+ * single type. This is much like an array in most programming languages.
+ *
+ */
 public class TagList extends TagBase {
 	
 	/**

@@ -6,6 +6,11 @@ import java.io.IOException;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.EnumTagType;
 
+/**
+ * 
+ * Represents a tag capable of holding a <code>long</code> value.
+ *
+ */
 public class TagLong extends TagBase {
 	
 	/**

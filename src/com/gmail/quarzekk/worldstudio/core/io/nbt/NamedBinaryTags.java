@@ -12,8 +12,19 @@ import java.lang.reflect.InvocationTargetException;
 import com.gmail.quarzekk.worldstudio.core.io.nbt.tag.TagBase;
 import com.gmail.quarzekk.worldstudio.core.io.nbt.tag.TagEnd;
 
+/**
+ * 
+ * Provides methods for manipulating tags within various sources.
+ *
+ */
 public class NamedBinaryTags {
 	
+	/**
+	 * Writes an NBT tag of any type to the given output stream.
+	 * @param tag The tag to write to the output stream
+	 * @param outputStream The output stream to which to write
+	 * @throws IOException
+	 */
 	public static void writeTagToStream(TagBase tag, OutputStream outputStream) throws IOException {
 		DataOutput output = null;
 		
@@ -32,6 +43,12 @@ public class NamedBinaryTags {
 		tag.writeData(output);
 	}
 	
+	/**
+	 * Reads an NBT tag of any type from the given input stream.
+	 * @param inputStream The input stream from which to read
+	 * @return The tag read from the input stream
+	 * @throws IOException
+	 */
 	public static TagBase readTagFromStream(InputStream inputStream) throws IOException {
 		DataInput input = null;
 		

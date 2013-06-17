@@ -6,6 +6,11 @@ import java.io.IOException;
 
 import com.gmail.quarzekk.worldstudio.core.io.nbt.EnumTagType;
 
+/**
+ * 
+ * Represents a tag of all types.
+ *
+ */
 public abstract class TagBase {
 	
 	/**
