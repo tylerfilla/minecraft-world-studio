@@ -7,9 +7,11 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import com.gmail.quarzekk.worldstudio.ui.render.StudioRenderer;
+import com.gmail.quarzekk.worldstudio.ui.render.WorldRenderer;
 
 public class DisplayThread extends Thread {
-
+	
+	private WorldRenderer worldRenderer;
 	private StudioRenderer studioRenderer;
 	
 	private boolean shouldContinue;
@@ -20,6 +22,7 @@ public class DisplayThread extends Thread {
 	public DisplayThread() {
 		super("worldstudio.display");
 		
+		this.worldRenderer = new WorldRenderer();
 		this.studioRenderer = new StudioRenderer();
 		
 		this.shouldContinue = true;
@@ -36,10 +39,13 @@ public class DisplayThread extends Thread {
 			e.printStackTrace();
 		}
 		
+		this.worldRenderer.initialize();
 		this.studioRenderer.initialize();
 		
 		while (this.shouldContinue) {
 			this.updateDisplay();
+			
+			this.worldRenderer.update();
 			this.studioRenderer.update();
 		}
 		
