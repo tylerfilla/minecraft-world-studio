@@ -16,6 +16,8 @@ public class DisplayThread extends Thread {
 	
 	private boolean shouldContinue;
 	
+	private String displayTitle;
+	
 	private int displaySizeX;
 	private int displaySizeY;
 	
@@ -26,6 +28,8 @@ public class DisplayThread extends Thread {
 		this.studioRenderer = new StudioRenderer();
 		
 		this.shouldContinue = true;
+		
+		this.displayTitle = "Minecraft World Studio";
 		
 		this.displaySizeX = 800;
 		this.displaySizeY = 600;
@@ -58,6 +62,7 @@ public class DisplayThread extends Thread {
 	
 	private void createDisplay() throws LWJGLException {
 		Display.setDisplayMode(new DisplayMode(this.displaySizeX, this.displaySizeY));
+		Display.setTitle(this.displayTitle);
 		Display.setIcon(new ByteBuffer[0]); // TODO: No icon yet
 		Display.create();
 	}
