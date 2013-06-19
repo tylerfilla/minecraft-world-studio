@@ -10,10 +10,16 @@ public class World {
 	private ArrayList<Chunk> loadedChunks;
 	
 	/**
+	 * The object that stores this world's information.
+	 */
+	private WorldInformation info;
+	
+	/**
 	 * Constructs a new world with default values
 	 */
 	public World() {
 		this.loadedChunks = new ArrayList<Chunk>();
+		this.info = WorldInformation.EMPTY;
 	}
 	
 }

@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public class WorldInformation {
 	
+	public static WorldInformation EMPTY = new WorldInformation();
+	
 	/**
 	 * A map of miscellaneous data required by the save handler processing this
 	 * WorldInformation.
