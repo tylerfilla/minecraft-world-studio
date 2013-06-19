@@ -2,6 +2,7 @@ package com.gmail.quarzekk.worldstudio.core.io.world.anvil;
 
 import com.gmail.quarzekk.worldstudio.core.io.world.ISaveHandler;
 import com.gmail.quarzekk.worldstudio.world.Chunk;
+import com.gmail.quarzekk.worldstudio.world.ChunkCoordinates;
 import com.gmail.quarzekk.worldstudio.world.WorldInformation;
 
 /**
@@ -42,7 +43,7 @@ public class AnvilSaveHandler implements ISaveHandler {
 	}
 	
 	@Override
-	public Chunk loadChunk() {
+	public Chunk loadChunk(ChunkCoordinates coords) {
 		return null;
 	}
 	
