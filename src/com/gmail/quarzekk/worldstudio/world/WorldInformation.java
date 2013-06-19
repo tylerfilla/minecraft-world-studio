@@ -10,6 +10,9 @@ import java.util.Map;
  */
 public class WorldInformation {
 	
+	/**
+	 * Represents an empty set of world information.
+	 */
 	public static WorldInformation EMPTY = new WorldInformation();
 	
 	/**
