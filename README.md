@@ -8,7 +8,7 @@ Minecraft World Studio is written in Java and is based on the [Lightweight Java 
 This Readme
 -----------
 
-This readme will be expanded, if not rewritten, in the forseeable future. It is here to display a few plans (in the following, appropriately named, section, *A Few Plans*) for the program and to make GitHub stop complaining ;D.
+This readme will be expanded, if not rewritten, in the forseeable future. It is here to display a few plans (in the following, appropriately named section, *A Few Plans*) for the program and to make GitHub stop complaining ;D.
 
 A Few Plans
 -----------
