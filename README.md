@@ -16,7 +16,7 @@ A Few Plans
 Minecraft World Studio is expected to include the following:
 
 * A three-dimensional interface for manipulating blocks and entities (of course)
-* Support for standard Minecraft texture packs
+* Support for standard Minecraft resource packs and older texture packs
 * Support for custom fonts via Java AWT
 * Support for scripting languages with an integrated script editor
 
