@@ -18,6 +18,11 @@ public class Chunk {
 	private int[] vboIds;
 	
 	/**
+	 * An array of integers representing the amounts of VBO elements per section.
+	 */
+	private int[] numVboElements;
+	
+	/**
 	 * Constructs a new chunk object with default values.
 	 */
 	public Chunk() {
@@ -48,6 +53,25 @@ public class Chunk {
 	 */
 	public int getCoordZ() {
 		return this.coordZ;
+	}
+	
+	/**
+	 * Gets the OpenGL VBO (vertex buffer object) identifier for the given
+	 * section.
+	 * @param section The section represented by the requested VBO ID
+	 * @return The VBO ID for the given section
+	 */
+	public int getVboId(int section) {
+		return this.vboIds[section];
+	}
+	
+	/**
+	 * Gets the amount of VBO elements in the given section.
+	 * @param section The section containing the elements
+	 * @return The amount of VBO elements
+	 */
+	public int getNumVboElements(int section) {
+		return this.numVboElements[section];
 	}
 	
 }
