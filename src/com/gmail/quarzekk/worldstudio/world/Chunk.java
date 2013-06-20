@@ -79,6 +79,11 @@ public class Chunk {
 		return this.numVboElements[section];
 	}
 	
+	/**
+	 * Gets whether or not the specified section's VBO needs to be updated.
+	 * @param section The section to check represented by the VBO
+	 * @return Whether or not the section's VBO needs to be updated
+	 */
 	public boolean getVboUpdateRequired(int section) {
 		return this.vboUpdatesRequired[section];
 	}
