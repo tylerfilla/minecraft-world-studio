@@ -23,6 +23,11 @@ public class Chunk {
 	private int[] numVboElements;
 	
 	/**
+	 * An array of boolean values signifying which sections need to be redrawn.
+	 */
+	private boolean[] vboUpdatesRequired;
+	
+	/**
 	 * Constructs a new chunk object with default values.
 	 */
 	public Chunk() {
@@ -72,6 +77,10 @@ public class Chunk {
 	 */
 	public int getNumVboElements(int section) {
 		return this.numVboElements[section];
+	}
+	
+	public boolean getVboUpdateRequired(int section) {
+		return this.vboUpdatesRequired[section];
 	}
 	
 }
