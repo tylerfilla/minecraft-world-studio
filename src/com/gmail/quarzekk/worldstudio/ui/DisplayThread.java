@@ -51,6 +51,8 @@ public class DisplayThread extends Thread {
 	public DisplayThread(UserInterface userInterface) {
 		super("worldstudio.display");
 		
+		this.userInterface = userInterface;
+		
 		this.userInterface.worldRenderer = new WorldRenderer();
 		this.userInterface.studioRenderer = new StudioRenderer();
 		
