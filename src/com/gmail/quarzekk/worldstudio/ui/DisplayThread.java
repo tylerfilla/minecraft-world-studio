@@ -26,7 +26,7 @@ public class DisplayThread extends Thread {
 	/**
 	 * Whether or not this thread should continue to operate.
 	 */
-	private boolean shouldContinue;
+	private volatile boolean shouldContinue;
 	
 	/**
 	 * The title of the display window.
