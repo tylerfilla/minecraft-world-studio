@@ -8,6 +8,11 @@ package com.gmail.quarzekk.worldstudio.world;
 public class Chunk {
 	
 	/**
+	 * The world to which this chunk belongs.
+	 */
+	private World world;
+	
+	/**
 	 * The x-coordinate of this chunk.
 	 */
 	private int coordX;
@@ -54,6 +59,22 @@ public class Chunk {
 		this.coordZ = coordZ;
 		
 		this.blocks = new Block[65536];
+	}
+	
+	/**
+	 * Gets the world to which this chunk belongs.
+	 * @return The parent World
+	 */
+	public World getWorld() {
+		return this.world;
+	}
+	
+	/**
+	 * Sets the world to which this chunk belongs.
+	 * @param world The desired parent World
+	 */
+	public void setWorld(World world) {
+		this.world = world;
 	}
 	
 	/**
