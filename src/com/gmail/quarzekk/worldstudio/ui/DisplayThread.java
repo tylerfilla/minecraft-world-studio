@@ -9,23 +9,50 @@ import org.lwjgl.opengl.DisplayMode;
 import com.gmail.quarzekk.worldstudio.ui.render.StudioRenderer;
 import com.gmail.quarzekk.worldstudio.ui.render.WorldRenderer;
 
+/**
+ * 
+ * A thread that handles the display and rendering via the appropriate
+ * UserInterface.
+ *
+ */
 public class DisplayThread extends Thread {
 	
-	private WorldRenderer worldRenderer;
-	private StudioRenderer studioRenderer;
+	/**
+	 * A reference to the UserInterface object that constructed this
+	 * DisplayThread.
+	 */
+	private UserInterface userInterface;
 	
+	/**
+	 * Whether or not this thread should continue to operate.
+	 */
 	private boolean shouldContinue;
 	
+	/**
+	 * The title of the display window.
+	 */
 	private String displayTitle;
 	
+	/**
+	 * The x-coordinate of the size of the display window.
+	 */
 	private int displaySizeX;
+	
+	/**
+	 * The y-coordinate of the size of the display window.
+	 */
 	private int displaySizeY;
 	
-	public DisplayThread() {
+	/**
+	 * Constructs a new DisplayThread with reference to the constructing
+	 * UserInterface.
+	 * @param userInterface A reference to the UserInterface
+	 */
+	public DisplayThread(UserInterface userInterface) {
 		super("worldstudio.display");
 		
-		this.worldRenderer = new WorldRenderer();
-		this.studioRenderer = new StudioRenderer();
+		this.userInterface.worldRenderer = new WorldRenderer();
+		this.userInterface.studioRenderer = new StudioRenderer();
 		
 		this.shouldContinue = true;
 		
@@ -43,23 +70,30 @@ public class DisplayThread extends Thread {
 			e.printStackTrace();
 		}
 		
-		this.worldRenderer.initialize();
-		this.studioRenderer.initialize();
+		this.userInterface.worldRenderer.initialize();
+		this.userInterface.studioRenderer.initialize();
 		
 		while (this.shouldContinue) {
 			this.updateDisplay();
 			
-			this.worldRenderer.update();
-			this.studioRenderer.update();
+			this.userInterface.worldRenderer.update();
+			this.userInterface.studioRenderer.update();
 		}
 		
 		this.destroyDisplay();
 	}
 	
+	/**
+	 * Signals that the thread should cease execution as soon as possible.
+	 */
 	public void close() {
 		this.shouldContinue = false;
 	}
 	
+	/**
+	 * Creates the display window via LWJGL.
+	 * @throws LWJGLException
+	 */
 	private void createDisplay() throws LWJGLException {
 		Display.setDisplayMode(new DisplayMode(this.displaySizeX, this.displaySizeY));
 		Display.setTitle(this.displayTitle);
@@ -67,10 +101,16 @@ public class DisplayThread extends Thread {
 		Display.create();
 	}
 	
+	/**
+	 * Destroys the display window.
+	 */
 	private void destroyDisplay() {
 		Display.destroy();
 	}
 	
+	/**
+	 * Updates the display window and checks if execution should continue.
+	 */
 	private void updateDisplay() {
 		Display.update();
 		
