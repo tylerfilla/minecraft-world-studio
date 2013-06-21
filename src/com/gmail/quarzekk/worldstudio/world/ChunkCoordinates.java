@@ -8,12 +8,12 @@ package com.gmail.quarzekk.worldstudio.world;
 public class ChunkCoordinates {
 	
 	/**
-	 * The X-coordinate of the chunk represented by these coordinates.
+	 * The x-coordinate of the chunk represented by these coordinates.
 	 */
 	private final int coordX;
 	
 	/**
-	 * The Z-coordinate of the chunk represented by these coordinates.
+	 * The z-coordinate of the chunk represented by these coordinates.
 	 */
 	private final int coordZ;
 	
@@ -26,8 +26,8 @@ public class ChunkCoordinates {
 	
 	/**
 	 * Constructs a new ChunkCoordinates with the given coordinate data.
-	 * @param coordX The X-coordinate of the chunk
-	 * @param coordZ The Z-coordinate of the chunk
+	 * @param coordX The x-coordinate of the chunk
+	 * @param coordZ The z-coordinate of the chunk
 	 */
 	public ChunkCoordinates(int coordX, int coordZ) {
 		this.coordX = coordX;
@@ -35,16 +35,16 @@ public class ChunkCoordinates {
 	}
 	
 	/**
-	 * Gets the X-coordinate of the chunk represented by these coordinates.
-	 * @return The X-coordinate of the chunk 
+	 * Gets the x-coordinate of the chunk represented by these coordinates.
+	 * @return The x-coordinate of the chunk 
 	 */
 	public int getCoordX() {
 		return this.coordX;
 	}
 	
 	/**
-	 * Gets the Z-coordinate of the chunk represented by these coordinates.
-	 * @return The Z-coordinate of the chunk
+	 * Gets the z-coordinate of the chunk represented by these coordinates.
+	 * @return The z-coordinate of the chunk
 	 */
 	public int getCoordZ() {
 		return this.coordZ;

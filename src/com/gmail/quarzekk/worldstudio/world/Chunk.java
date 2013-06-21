@@ -1,19 +1,29 @@
 package com.gmail.quarzekk.worldstudio.world;
 
+/**
+ * 
+ * A chunk within a world.
+ *
+ */
 public class Chunk {
 	
 	/**
-	 * The X coordinate of this chunk.
+	 * The x-coordinate of this chunk.
 	 */
 	private int coordX;
 	
 	/**
-	 * The Z coordinate of this chunk.
+	 * The z-coordinate of this chunk.
 	 */
 	private int coordZ;
 	
 	/**
-	 * An array of integers corresponding to this chunk's subchunks' VBO indexes.
+	 * The Blocks within this chunk.
+	 */
+	private Block[] blocks;
+	
+	/**
+	 * An array of integers corresponding to this chunk's sections' VBO indexes.
 	 */
 	private int[] vboIds;
 	
@@ -36,28 +46,66 @@ public class Chunk {
 	
 	/**
 	 * Constructs a new chunk with the given coordinate data.
-	 * @param coordX The X coordinate of this chunk
-	 * @param coordZ The Z coordinate of this chunk
+	 * @param coordX The x-coordinate of this chunk
+	 * @param coordZ The z-coordinate of this chunk
 	 */
 	public Chunk(int coordX, int coordZ) {
 		this.coordX = coordX;
 		this.coordZ = coordZ;
+		
+		this.blocks = new Block[65536];
 	}
 	
 	/**
-	 * Gets the X coordinate of this chunk.
-	 * @return The X coordinate of this chunk
+	 * Gets the x-coordinate of this chunk.
+	 * @return The x-coordinate of this chunk
 	 */
 	public int getCoordX() {
 		return this.coordX;
 	}
 	
 	/**
-	 * Gets the Z coordinate of this chunk.
-	 * @return The Z coordinate of this chunk.
+	 * Gets the z-coordinate of this chunk.
+	 * @return The z-coordinate of this chunk.
 	 */
 	public int getCoordZ() {
 		return this.coordZ;
+	}
+	
+	/**
+	 * Gets the block at the specified block coordinates relative to this
+	 * chunk's origin.
+	 * @param x The x-coordinate of the block
+	 * @param y The y-coordinate of the block
+	 * @param z The z-coordinate of the block
+	 * @return The block at the specified coordinates
+	 */
+	public Block getBlockAt(int x, int y, int z) {
+		int index = y*256 + z*16 + x;
+		
+		if (index < 0 || index > 65535) {
+			return null;
+		}
+		
+		return this.blocks[index];
+	}
+	
+	/**
+	 * Sets the block at the specified block coordinates relative to this
+	 * chunk's origin.
+	 * @param x The x-coordinate of the block
+	 * @param y The y-coordinate of the block
+	 * @param z The z-coordinate of the block
+	 * @param block The block to set at the specified coordinates
+	 */
+	public void setBlockAt(int x, int y, int z, Block block) {
+		int index = y*256 + z*16 + x;
+		
+		if (index < 0 || index > 65535) {
+			return;
+		}
+		
+		this.blocks[index] = block;
 	}
 	
 	/**
