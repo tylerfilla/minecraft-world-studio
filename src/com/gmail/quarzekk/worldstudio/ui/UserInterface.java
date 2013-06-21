@@ -19,12 +19,12 @@ public class UserInterface {
 	/**
 	 * The WorldRenderer run from the display thread.
 	 */
-	protected volatile WorldRenderer worldRenderer;
+	protected WorldRenderer worldRenderer;
 	
 	/**
 	 * The StudioRenderer run from the display thread.
 	 */
-	protected volatile StudioRenderer studioRenderer;
+	protected StudioRenderer studioRenderer;
 	
 	/**
 	 * Constructs a new UserInterface.
