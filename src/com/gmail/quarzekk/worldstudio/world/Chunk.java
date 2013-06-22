@@ -59,6 +59,10 @@ public class Chunk {
 		this.coordZ = coordZ;
 		
 		this.blocks = new Block[65536];
+		
+		this.vboIds = new int[8];
+		this.numVboElements = new int[8];
+		this.vboUpdatesRequired = new boolean[8];
 	}
 	
 	/**
