@@ -111,10 +111,15 @@ public class DisplayThread extends Thread {
 	}
 	
 	/**
-	 * Updates the display window and checks if execution should continue.
+	 * Updates the display window.
 	 */
 	private void updateDisplay() {
 		Display.update();
+		
+		if (Display.wasResized()) {
+			this.userInterface.worldRenderer.initialize();
+			this.userInterface.studioRenderer.initialize();
+		}
 		
 		this.shouldContinue = this.shouldContinue && !Display.isCloseRequested();
 	}
