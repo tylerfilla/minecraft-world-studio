@@ -100,6 +100,7 @@ public class DisplayThread extends Thread {
 		Display.setDisplayMode(new DisplayMode(this.displaySizeX, this.displaySizeY));
 		Display.setTitle(this.displayTitle);
 		Display.setIcon(new ByteBuffer[0]); // TODO: No icon yet
+		Display.setResizable(true);
 		Display.create();
 	}
 	
