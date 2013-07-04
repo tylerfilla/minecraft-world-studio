@@ -125,22 +125,32 @@ public class Chunk {
 	 */
 	public void setBlockAt(int x, int y, int z, Block block) {
 		int index = y*256 + z*16 + x;
+		int section = y/16;
 		
 		if (index < 0 || index > 65535) {
 			return;
 		}
 		
 		this.blocks[index] = block;
+		this.vboUpdatesRequired[section] = true;
 	}
 	
 	/**
-	 * Gets the OpenGL VBO (vertex buffer object) identifier for the given
-	 * section.
-	 * @param section The section represented by the requested VBO ID
+	 * Gets the VBO identifier for the given section.
+	 * @param section The section of the chunk
 	 * @return The VBO ID for the given section
 	 */
 	public int getVboId(int section) {
 		return this.vboIds[section];
+	}
+	
+	/**
+	 * Sets the VBO identifier for the given section.
+	 * @param section The section of the chunk
+	 * @param vboId The new VBO ID for the given section.
+	 */
+	public void setVboId(int section, int vboId) {
+		this.vboIds[section] = vboId;
 	}
 	
 	/**
@@ -153,12 +163,32 @@ public class Chunk {
 	}
 	
 	/**
+	 * Sets the amount of VBO elements in the given section to that of the
+	 * given.
+	 * @param section The section containing the elements
+	 * @param numVboElements The new amount of VBO elements
+	 */
+	public void setNumVboElements(int section, int numVboElements) {
+		this.numVboElements[section] = numVboElements;
+	}
+	
+	/**
 	 * Gets whether or not the specified section's VBO needs to be updated.
-	 * @param section The section to check represented by the VBO
+	 * @param section The section represented by the VBO
 	 * @return Whether or not the section's VBO needs to be updated
 	 */
 	public boolean getVboUpdateRequired(int section) {
 		return this.vboUpdatesRequired[section];
+	}
+	
+	/**
+	 * Sets whether or not the specified section's VBO needs to be updated.
+	 * @param section The section represented by the VBO
+	 * @param vboUpdateRequired Whether or not the section's VBO needs to be
+	 * updated.
+	 */
+	public void setVboUpdateRequired(int section, boolean vboUpdateRequired) {
+		this.vboUpdatesRequired[section] = vboUpdateRequired;
 	}
 	
 }

@@ -8,11 +8,4 @@ package com.gmail.quarzekk.worldstudio.ui.render.component;
  * 
  */
 public interface IComponentRenderer {
-	
-	/**
-	 * Initializes the renderer. All, if any, initialization routines are
-	 * performed here.
-	 */
-	public void initialize();
-	
 }

@@ -16,6 +16,14 @@ public class WorldStudio {
 		this.userInterface.startDisplay();
 	}
 	
+	public void exit(int status) {
+		if (status > 0) {
+			System.err.println("Minecraft World Studio is exiting with errors.");
+		}
+		
+		System.exit(status);
+	}
+	
 	public static void main(String[] args) {
 		WorldStudio.instance = new WorldStudio();
 		WorldStudio.instance.start();

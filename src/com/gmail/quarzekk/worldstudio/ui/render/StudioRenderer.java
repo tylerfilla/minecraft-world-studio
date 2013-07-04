@@ -11,10 +11,6 @@ public class StudioRenderer implements IRenderer {
 	}
 	
 	@Override
-	public void initialize() {
-	}
-	
-	@Override
 	public void update() {
 		this.render();
 	}

@@ -1,11 +1,15 @@
 package com.gmail.quarzekk.worldstudio.ui;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.nio.ByteBuffer;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GLContext;
 
+import com.gmail.quarzekk.worldstudio.WorldStudio;
 import com.gmail.quarzekk.worldstudio.ui.render.StudioRenderer;
 import com.gmail.quarzekk.worldstudio.ui.render.WorldRenderer;
 
@@ -72,9 +76,6 @@ public class DisplayThread extends Thread {
 			e.printStackTrace();
 		}
 		
-		this.userInterface.worldRenderer.initialize();
-		this.userInterface.studioRenderer.initialize();
-		
 		while (this.shouldContinue) {
 			this.updateDisplay();
 			
@@ -99,9 +100,17 @@ public class DisplayThread extends Thread {
 	private void createDisplay() throws LWJGLException {
 		Display.setDisplayMode(new DisplayMode(this.displaySizeX, this.displaySizeY));
 		Display.setTitle(this.displayTitle);
-		Display.setIcon(new ByteBuffer[0]); // TODO: No icon yet
+		Display.setIcon(new ByteBuffer[0]);
 		Display.setResizable(true);
 		Display.create();
+		
+		if (!GLContext.getCapabilities().GL_ARB_vertex_buffer_object) {
+			System.err.println("Vertex buffer objects are unsupported by the graphics card.");
+			this.destroyDisplay();
+			WorldStudio.instance.exit(1);
+		}
+		
+		glViewport(0, 0, Display.getWidth(), Display.getHeight());
 	}
 	
 	/**
@@ -118,11 +127,12 @@ public class DisplayThread extends Thread {
 		Display.update();
 		
 		if (Display.wasResized()) {
-			this.userInterface.worldRenderer.initialize();
-			this.userInterface.studioRenderer.initialize();
+			glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		}
 		
 		this.shouldContinue = this.shouldContinue && !Display.isCloseRequested();
+		
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 	
 }
