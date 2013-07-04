@@ -13,7 +13,7 @@ public class WorldInformation {
 	/**
 	 * Represents an empty set of world information.
 	 */
-	public static WorldInformation EMPTY = new WorldInformation();
+	public static final WorldInformation EMPTY = new WorldInformation();
 	
 	/**
 	 * A map of miscellaneous data required by the save handler processing this
