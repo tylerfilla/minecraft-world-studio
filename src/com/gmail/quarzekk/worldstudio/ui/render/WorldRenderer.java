@@ -92,8 +92,6 @@ public class WorldRenderer implements IRenderer {
 					
 					glPushMatrix();
 					
-					glRotatef(((float) (System.currentTimeMillis()%1000)/1000.0F)*360.0F, 1.0F, 1.0F, 0.0F);
-					
 					glEnableClientState(GL_VERTEX_ARRAY);
 					
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, chunk.getVboId(section));
