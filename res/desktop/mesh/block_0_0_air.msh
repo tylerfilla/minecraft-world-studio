@@ -1,0 +1,19 @@
+#
+# Minecraft World Studio block mesh file
+#
+# Air
+#
+
+block id 0
+block data 0
+
+texture tileU 0
+texture tileV 0
+texture tileSpanU 0
+texture tileSpanV 0
+
+begin vertices
+end
+
+begin texcoords
+end
