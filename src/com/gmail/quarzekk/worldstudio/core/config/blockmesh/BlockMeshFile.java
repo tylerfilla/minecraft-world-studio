@@ -162,6 +162,14 @@ public class BlockMeshFile implements IConfigFile {
 		return this.vertexData;
 	}
 	
+	/**
+	 * Gets the number of vertices added.
+	 * @return The number of added vertices
+	 */
+	public int getNumVertices() {
+		return this.vertexDataIndex/3;
+	}
+	
 	protected void addVertexData(float vertex) {
 		this.vertexData[this.vertexDataIndex++] = vertex;
 	}
@@ -172,6 +180,14 @@ public class BlockMeshFile implements IConfigFile {
 	 */
 	public float[] getTexcoordData() {
 		return this.texcoordData;
+	}
+	
+	/**
+	 * Gets the number of texcoords added.
+	 * @return The number of added texcoords
+	 */
+	public int getNumTexcoords() {
+		return this.texcoordDataIndex/2;
 	}
 	
 	protected void addTexcoordData(float texcoord) {
