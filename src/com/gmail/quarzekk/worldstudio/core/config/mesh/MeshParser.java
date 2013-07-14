@@ -266,6 +266,8 @@ public class MeshParser implements IConfigParser {
 			}
 			System.err.println("^");
 			System.err.println();
+		} else {
+			System.err.println();
 		}
 		
 		if (throwable != null) {
