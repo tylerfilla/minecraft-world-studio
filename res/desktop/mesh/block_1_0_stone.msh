@@ -1,0 +1,78 @@
+#
+# Minecraft World Studio block mesh file
+#
+# Stone
+#
+
+block id 1
+block data 0
+
+texture tileU 0
+texture tileV 0
+texture tileSpanU 0
+texture tileSpanV 0
+
+begin vertex
+	# Front 1
+	vertex 0 0 0
+	vertex 1 0 0
+	vertex 1 1 0
+	
+	# Front 2
+	vertex 1 1 0
+	vertex 0 1 0
+	vertex 0 0 0
+	
+	# Back 1
+	vertex 1 0 1
+	vertex 0 0 1
+	vertex 0 1 1
+	
+	# Back 2
+	vertex 0 1 1
+	vertex 1 1 1
+	vertex 1 0 1
+	
+	# Left 1
+	vertex 0 0 1
+	vertex 0 0 0
+	vertex 0 1 0
+	
+	# Left 2
+	vertex 0 1 0
+	vertex 0 1 1
+	vertex 0 0 1
+	
+	# Right 1
+	vertex 1 0 0
+	vertex 1 0 1
+	vertex 1 1 1
+	
+	# Right 2
+	vertex 1 1 1
+	vertex 1 1 0
+	vertex 1 0 0
+	
+	# Top 1
+	vertex 0 1 0
+	vertex 1 1 0
+	vertex 1 1 1
+	
+	# Top 2
+	vertex 1 1 1
+	vertex 0 1 1
+	vertex 0 1 0
+	
+	# Bottom 1
+	vertex 1 0 0
+	vertex 1 0 1
+	vertex 0 0 1
+	
+	# Bottom 2
+	vertex 0 0 1
+	vertex 0 0 0
+	vertex 1 0 0
+end
+
+begin texcoord
+end
