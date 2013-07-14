@@ -1,10 +1,10 @@
-package com.gmail.quarzekk.worldstudio.core.config.mesh;
+package com.gmail.quarzekk.worldstudio.core.config.blockmesh;
 
 import java.io.File;
 
 import com.gmail.quarzekk.worldstudio.core.config.IConfigFile;
 
-public class MeshFile implements IConfigFile {
+public class BlockMeshFile implements IConfigFile {
 	
 	/**
 	 * The {@link File} that backs this MeshFile.
@@ -59,7 +59,7 @@ public class MeshFile implements IConfigFile {
 	 * Constructs a new MeshFile on the given {@link File}.
 	 * @param file The File to back this MeshFile
 	 */
-	public MeshFile(File file) {
+	public BlockMeshFile(File file) {
 		this.file = file;
 		
 		this.blockId = -1;

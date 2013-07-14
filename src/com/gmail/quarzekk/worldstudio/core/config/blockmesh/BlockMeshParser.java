@@ -1,4 +1,4 @@
-package com.gmail.quarzekk.worldstudio.core.config.mesh;
+package com.gmail.quarzekk.worldstudio.core.config.blockmesh;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 
 import com.gmail.quarzekk.worldstudio.core.config.IConfigParser;
 
-public class MeshParser implements IConfigParser {
+public class BlockMeshParser implements IConfigParser {
 	
 	/**
-	 * The MeshFile parsed by this MeshParser.
+	 * The representative block mesh file parsed by this parser.
 	 */
-	private MeshFile meshFile;
+	private BlockMeshFile meshFile;
 	
 	/**
 	 * The current state of the parse procedure. This is used to create a
@@ -20,16 +20,16 @@ public class MeshParser implements IConfigParser {
 	 */
 	private int parseState;
 	
-	public MeshParser(MeshFile meshFile) {
+	public BlockMeshParser(BlockMeshFile meshFile) {
 		this.meshFile = meshFile;
 		this.parseState = 0;
 	}
 	
 	/**
-	 * Gets the {@link MeshFile} parsed by this MeshParser.
+	 * Gets the {@link BlockMeshFile} parsed by this MeshParser.
 	 * @return The parsed MeshFile
 	 */
-	public MeshFile getMeshFile() {
+	public BlockMeshFile getMeshFile() {
 		return this.meshFile;
 	}
 	
@@ -64,7 +64,7 @@ public class MeshParser implements IConfigParser {
 	
 	/**
 	 * Parses an individual line of the mesh file as provided by
-	 * {@link MeshParser#parse()}.
+	 * {@link BlockMeshParser#parse()}.
 	 * @param line The line to parse
 	 */
 	private void parseLine(String line, int lineNum) {
