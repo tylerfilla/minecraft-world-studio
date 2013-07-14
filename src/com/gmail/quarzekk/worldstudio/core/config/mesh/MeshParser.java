@@ -154,18 +154,22 @@ public class MeshParser implements IConfigParser {
 				if (components.length < 3) {
 					this.printLineError(null, "Insufficient amount of coordinates (" + components.length + "/3 given)", line, lineNum, -1);
 					if (components.length == 0) {
-						components = new String[3];
+						components = new String[] {
+							"0",
+							"0",
+							"0",
+						};
 					} else if (components.length == 1) {
 						components = new String[] {
-								components[0],
-								"0",
-								"0",
+							components[0],
+							"0",
+							"0",
 						};
 					} else if (components.length == 2) {
 						components = new String[] {
-								components[0],
-								components[1],
-								"0",
+							components[0],
+							components[1],
+							"0",
 						};
 					}
 				}
@@ -198,6 +202,39 @@ public class MeshParser implements IConfigParser {
 				this.parseState = 0;
 			}
 		} else if (this.parseState == 2) {
+			if (line.length() >= 8 && line.substring(0, 8).equalsIgnoreCase("texcoord")) {
+				String[] components = line.substring(9).split(" ");
+				if (components.length < 2) {
+					this.printLineError(null, "Insufficient amount of coordinates (" + components.length + "/2 given)", line, lineNum, -1);
+					if (components.length == 0) {
+						components = new String[] {
+							"0",
+							"0",
+						};
+					} else if (components.length == 1) {
+						components = new String[] {
+							components[0],
+							"0",
+						};
+					}
+				}
+				String coordUString = components[0];
+				String coordVString = components[1];
+				float coordU = 0;
+				float coordV = 0;
+				try {
+					coordU = Float.parseFloat(coordUString);
+				} catch (NumberFormatException e) {
+					this.printLineError(e, "Could not parse u-coordinate of texcoord as float", line, lineNum, 9);
+				}
+				try {
+					coordV = Float.parseFloat(coordVString);
+				} catch (NumberFormatException e) {
+					this.printLineError(e, "Could not parse v-coordinate of texcoord as float", line, lineNum, 10 + coordUString.length());
+				}
+				this.meshFile.addTexcoordData(coordU);
+				this.meshFile.addTexcoordData(coordV);
+			}
 			if (line.length() >= 3 && line.substring(0, 3).equalsIgnoreCase("end")) {
 				this.parseState = 0;
 			}
