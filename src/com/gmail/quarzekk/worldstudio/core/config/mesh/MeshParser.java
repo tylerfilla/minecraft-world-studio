@@ -52,6 +52,10 @@ public class MeshParser implements IConfigParser {
 				continue;
 			}
 			
+			while (line.contains("#")) {
+				line = line.substring(line.lastIndexOf("#")).trim();
+			}
+			
 			this.parseLine(line, lineNum);
 		}
 		
@@ -129,6 +133,74 @@ public class MeshParser implements IConfigParser {
 					this.meshFile.setTextureTileSpanU(tileSpanV);
 				}
 			}
+			if (line.length() >= 5 && line.substring(0, 5).equalsIgnoreCase("begin")) {
+				if (line.length() >= 6) {
+					String groupString = line.substring(6);
+					if (groupString.equals("vertex")) {
+						this.parseState = 1;
+					} else if (groupString.equals("texcoord")) {
+						this.parseState = 2;
+					}
+				} else {
+					this.printLineError(null, "Group name not specified", line, lineNum, line.length() - 1);
+				}
+			}
+			if (line.length() >= 3 && line.substring(0, 3).equalsIgnoreCase("end")) {
+				this.printLineError(null, "Attempt to end a nonexistant group", line, lineNum, -1);
+			}
+		} else if (this.parseState == 1) {
+			if (line.length() >= 6 && line.substring(0, 6).equalsIgnoreCase("vertex")) {
+				String[] components = line.substring(7).split(" ");
+				if (components.length < 3) {
+					this.printLineError(null, "Insufficient amount of coordinates (" + components.length + "/3 given)", line, lineNum, -1);
+					if (components.length == 0) {
+						components = new String[3];
+					} else if (components.length == 1) {
+						components = new String[] {
+								components[0],
+								"0",
+								"0",
+						};
+					} else if (components.length == 2) {
+						components = new String[] {
+								components[0],
+								components[1],
+								"0",
+						};
+					}
+				}
+				String coordXString = components[0];
+				String coordYString = components[1];
+				String coordZString = components[2];
+				float coordX = 0;
+				float coordY = 0;
+				float coordZ = 0;
+				try {
+					coordX = Float.parseFloat(coordXString);
+				} catch (NumberFormatException e) {
+					this.printLineError(e, "Could not parse x-coordinate of vertex as float", line, lineNum, 7);
+				}
+				try {
+					coordY = Float.parseFloat(coordYString);
+				} catch (NumberFormatException e) {
+					this.printLineError(e, "Could not parse y-coordinate of vertex as float", line, lineNum, 8 + coordXString.length());
+				}
+				try {
+					coordZ = Float.parseFloat(coordZString);
+				} catch (NumberFormatException e) {
+					this.printLineError(e, "Could not parse z-coordinate of vertex as float", line, lineNum, 9 + coordXString.length() + coordYString.length());
+				}
+				this.meshFile.addVertexData(coordX);
+				this.meshFile.addVertexData(coordY);
+				this.meshFile.addVertexData(coordZ);
+			}
+			if (line.length() >= 3 && line.substring(0, 3).equalsIgnoreCase("end")) {
+				this.parseState = 0;
+			}
+		} else if (this.parseState == 2) {
+			if (line.length() >= 3 && line.substring(0, 3).equalsIgnoreCase("end")) {
+				this.parseState = 0;
+			}
 		}
 	}
 	
@@ -144,8 +216,9 @@ public class MeshParser implements IConfigParser {
 	private void printLineError(Throwable throwable, String message, String line, int lineNum, int charNum) {
 		System.err.println("An error occurred while parsing mesh file \"" + this.meshFile.getFile().getAbsolutePath() + "\"");
 		System.err.println("Error: " + message);
-		System.err.println(lineNum + ":\"" + line + "\"");
+		System.err.println();
 		
+		System.err.println(lineNum + ":\"" + line + "\"");
 		if (charNum > -1) {
 			System.err.print("+-");
 			for (int i = 0; i < String.valueOf(lineNum).length(); i++) {
@@ -155,11 +228,13 @@ public class MeshParser implements IConfigParser {
 				System.err.print("-");
 			}
 			System.err.println("^");
+			System.err.println();
 		}
 		
-		System.err.println();
-		throwable.printStackTrace();
-		System.err.println();
+		if (throwable != null) {
+			throwable.printStackTrace();
+			System.err.println();
+		}
 	}
 	
 }

@@ -46,10 +46,14 @@ public class MeshFile implements IConfigFile {
 	 */
 	private float[] vertexData;
 	
+	private int vertexDataIndex;
+	
 	/**
 	 * The parsed texcoord data.
 	 */
 	private float[] texcoordData;
+	
+	private int texcoordDataIndex;
 	
 	/**
 	 * Constructs a new MeshFile on the given {@link File}.
@@ -68,6 +72,9 @@ public class MeshFile implements IConfigFile {
 		// Max of 128 vertices per mesh
 		this.vertexData = new float[384];
 		this.texcoordData = new float[256];
+		
+		this.vertexDataIndex = 0;
+		this.texcoordDataIndex = 0;
 	}
 	
 	@Override
@@ -155,12 +162,20 @@ public class MeshFile implements IConfigFile {
 		return this.vertexData;
 	}
 	
+	protected void addVertexData(float vertex) {
+		this.vertexData[this.vertexDataIndex++] = vertex;
+	}
+	
 	/**
 	 * Gets the parsed texcoord data.
 	 * @return The parsed texcoord data
 	 */
 	public float[] getTexcoordData() {
 		return this.texcoordData;
+	}
+	
+	protected void addTexcoordData(float texcoord) {
+		this.texcoordData[this.texcoordDataIndex++] = texcoord;
 	}
 	
 }
