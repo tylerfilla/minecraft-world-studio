@@ -53,7 +53,7 @@ public class MeshParser implements IConfigParser {
 			}
 			
 			while (line.contains("#")) {
-				line = line.substring(line.lastIndexOf("#")).trim();
+				line = line.substring(0, line.lastIndexOf("#")).trim();
 			}
 			
 			this.parseLine(line, lineNum);
