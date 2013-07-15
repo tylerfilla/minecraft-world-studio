@@ -23,7 +23,7 @@ public class BlockMeshIndex {
 	 * @param blockMetadata The metadata of the block
 	 * @param blockMesh The mesh for the block
 	 */
-	public void addBlockMesh(int blockId, int blockMetadata, Mesh blockMesh) {
+	public static void addBlockMesh(int blockId, int blockMetadata, Mesh blockMesh) {
 		blockMeshMap.put(((long) blockId << 32) | (long) blockMetadata, blockMesh);
 	}
 	
@@ -32,7 +32,7 @@ public class BlockMeshIndex {
 	 * @param blockId The ID of the block
 	 * @param blockMetadata The metadata of the block
 	 */
-	public void removeBlockMesh(int blockId, int blockMetadata) {
+	public static void removeBlockMesh(int blockId, int blockMetadata) {
 		blockMeshMap.remove(((long) blockId << 32) | (long) blockMetadata);
 	}
 	
@@ -40,7 +40,7 @@ public class BlockMeshIndex {
 	 * Removes a block mesh from the index based on the Mesh object itself.
 	 * @param blockMesh The Mesh object
 	 */
-	public void removeBlockMesh(Mesh blockMesh) {
+	public static void removeBlockMesh(Mesh blockMesh) {
 		blockMeshMap.values().remove(blockMesh);
 	}
 	
