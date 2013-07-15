@@ -44,4 +44,14 @@ public class BlockMeshIndex {
 		blockMeshMap.values().remove(blockMesh);
 	}
 	
+	/**
+	 * Gets a block mesh from the index for the given block info.
+	 * @param blockId The ID of the block
+	 * @param blockMetadata The metadata of the block
+	 * @return The mesh for the block
+	 */
+	public static Mesh getBlockMesh(int blockId, int blockMetadata) {
+		return blockMeshMap.get(((long) blockId << 32) | (long) blockMetadata);
+	}
+	
 }
