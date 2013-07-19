@@ -1,14 +1,14 @@
 Minecraft World Studio
 ======================
 
-Minecraft World Studio is an evolving program designed to enhance the construction of Minecraft worlds through a three-dimensional studio interface. This is targeted towards the mapmaker and the general player.
+Minecraft World Studio is a work-in-progress program with hope to enhance the construction of Minecraft worlds through a three-dimensional studio interface.
 
-Minecraft World Studio is written in Java and is based on the [Lightweight Java Game Library](http://www.lwjgl.org/), the same software Minecraft itself is based on.
+Minecraft World Studio is written in Java and is based on the [Lightweight Java Game Library](http://www.lwjgl.org/), the same software configuration Minecraft itself is based on.
 
 This Readme
 -----------
 
-This readme will be expanded, if not rewritten, in the forseeable future. It is here to display a few plans (in the following, appropriately named section, *A Few Plans*) for the program and to make GitHub stop complaining ;D.
+This readme will be expanded, if not rewritten, in the foreseeable future. It is here to display a few plans (in the following, appropriately named section, *A Few Plans*) for the program and to make GitHub stop complaining ;D.
 
 A Few Plans
 -----------
