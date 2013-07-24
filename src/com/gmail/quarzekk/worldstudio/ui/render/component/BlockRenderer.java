@@ -2,6 +2,8 @@ package com.gmail.quarzekk.worldstudio.ui.render.component;
 
 import java.nio.FloatBuffer;
 
+import com.gmail.quarzekk.worldstudio.ui.render.mesh.block.BlockMesh;
+import com.gmail.quarzekk.worldstudio.ui.render.mesh.block.BlockMeshIndex;
 import com.gmail.quarzekk.worldstudio.world.Block;
 import com.gmail.quarzekk.worldstudio.world.Chunk;
 
@@ -26,8 +28,29 @@ public class BlockRenderer implements IComponentRenderer {
 	 * @return The number of VBO elements used to render the block
 	 */
 	public int renderBlock(FloatBuffer buffer, Chunk chunk, Block block, int x, int y, int z) {
-		// TODO: Render vertices to buffer
-		return 0;
+		BlockMesh mesh = BlockMeshIndex.getMeshForBlockInfo(block.getId(), block.getMetadata());
+		
+		int numElements = 0;
+		
+		for (float[] vertex : mesh.getVertices()) {
+			float vX = vertex[0];
+			float vY = vertex[1];
+			float vZ = vertex[2];
+			
+			vX += (float) x;
+			vY += (float) y;
+			vZ += (float) z;
+			
+			System.out.println(vX);
+			System.out.println(vY);
+			System.out.println(vZ);
+			
+			buffer.put(vX);
+			buffer.put(vY);
+			buffer.put(vZ);
+		}
+		
+		return mesh.getVertices().length/3;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.gmail.quarzekk.worldstudio.core.config.blockmesh;
+package com.gmail.quarzekk.worldstudio.core.config.mesh.block;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -194,9 +194,7 @@ public class BlockMeshParser implements IConfigParser {
 				} catch (NumberFormatException e) {
 					this.printLineError(e, "Could not parse z-coordinate of vertex as float", line, lineNum, 9 + coordXString.length() + coordYString.length());
 				}
-				this.meshFile.addVertexData(coordX);
-				this.meshFile.addVertexData(coordY);
-				this.meshFile.addVertexData(coordZ);
+				this.meshFile.addVertexData(new float[] { coordX, coordY, coordZ });
 			}
 			if (line.length() >= 3 && line.substring(0, 3).equalsIgnoreCase("end")) {
 				this.parseState = 0;
@@ -232,8 +230,7 @@ public class BlockMeshParser implements IConfigParser {
 				} catch (NumberFormatException e) {
 					this.printLineError(e, "Could not parse v-coordinate of texcoord as float", line, lineNum, 10 + coordUString.length());
 				}
-				this.meshFile.addTexcoordData(coordU);
-				this.meshFile.addTexcoordData(coordV);
+				this.meshFile.addVertexData(new float[] { coordU, coordV });
 			}
 			if (line.length() >= 3 && line.substring(0, 3).equalsIgnoreCase("end")) {
 				this.parseState = 0;

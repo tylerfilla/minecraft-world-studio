@@ -1,4 +1,4 @@
-package com.gmail.quarzekk.worldstudio.core.config.blockmesh;
+package com.gmail.quarzekk.worldstudio.core.config.mesh.block;
 
 import java.io.File;
 
@@ -44,14 +44,14 @@ public class BlockMeshFile implements IConfigFile {
 	/**
 	 * The parsed vertex data.
 	 */
-	private float[] vertexData;
+	private float[][] vertexData;
 	
 	private int vertexDataIndex;
 	
 	/**
 	 * The parsed texcoord data.
 	 */
-	private float[] texcoordData;
+	private float[][] texcoordData;
 	
 	private int texcoordDataIndex;
 	
@@ -70,8 +70,8 @@ public class BlockMeshFile implements IConfigFile {
 		this.textureTileSpanV = -1;
 		
 		// Max of 128 vertices per mesh
-		this.vertexData = new float[384];
-		this.texcoordData = new float[256];
+		this.vertexData = new float[128][3];
+		this.texcoordData = new float[128][2];
 		
 		this.vertexDataIndex = 0;
 		this.texcoordDataIndex = 0;
@@ -158,7 +158,7 @@ public class BlockMeshFile implements IConfigFile {
 	 * Gets the parsed vertex data.
 	 * @return The parsed vertex data
 	 */
-	public float[] getVertexData() {
+	public float[][] getVertexData() {
 		return this.vertexData;
 	}
 	
@@ -167,10 +167,10 @@ public class BlockMeshFile implements IConfigFile {
 	 * @return The number of added vertices
 	 */
 	public int getNumVertices() {
-		return this.vertexDataIndex/3;
+		return this.vertexDataIndex;
 	}
 	
-	protected void addVertexData(float vertex) {
+	protected void addVertexData(float[] vertex) {
 		this.vertexData[this.vertexDataIndex++] = vertex;
 	}
 	
@@ -178,7 +178,7 @@ public class BlockMeshFile implements IConfigFile {
 	 * Gets the parsed texcoord data.
 	 * @return The parsed texcoord data
 	 */
-	public float[] getTexcoordData() {
+	public float[][] getTexcoordData() {
 		return this.texcoordData;
 	}
 	
@@ -187,10 +187,10 @@ public class BlockMeshFile implements IConfigFile {
 	 * @return The number of added texcoords
 	 */
 	public int getNumTexcoords() {
-		return this.texcoordDataIndex/2;
+		return this.texcoordDataIndex;
 	}
 	
-	protected void addTexcoordData(float texcoord) {
+	protected void addTexcoordData(float[] texcoord) {
 		this.texcoordData[this.texcoordDataIndex++] = texcoord;
 	}
 	
