@@ -30,8 +30,6 @@ public class BlockRenderer implements IComponentRenderer {
 	public int renderBlock(FloatBuffer buffer, Chunk chunk, Block block, int x, int y, int z) {
 		BlockMesh mesh = BlockMeshIndex.getMeshForBlockInfo(block.getId(), block.getMetadata());
 		
-		int numElements = 0;
-		
 		for (float[] vertex : mesh.getVertices()) {
 			float vX = vertex[0];
 			float vY = vertex[1];
@@ -40,10 +38,6 @@ public class BlockRenderer implements IComponentRenderer {
 			vX += (float) x;
 			vY += (float) y;
 			vZ += (float) z;
-			
-			System.out.println(vX);
-			System.out.println(vY);
-			System.out.println(vZ);
 			
 			buffer.put(vX);
 			buffer.put(vY);
