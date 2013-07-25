@@ -21,24 +21,36 @@ public class WorldRenderer implements IRenderer {
 	private ChunkRenderer chunkRenderer;
 	
 	/**
-	 * A reference to the world this renderer is concerned with.
+	 * A reference to the world with which this renderer is concerned.
 	 */
 	private World world;
 	
+	/**
+	 * A reference to the camera from which the scene is viewed.
+	 */
+	private Camera camera;
+	
 	public WorldRenderer() {
 		this.chunkRenderer = new ChunkRenderer();
-		
-		this.world = null;
 	}
 	
 	@Override
 	public void update() {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
+		
 		gluPerspective(45.0F, (float) Display.getWidth()/(float) Display.getHeight(), 0.0F, 100.0F);
 		
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+		
+		this.camera.update();
+		
+		glTranslated(-this.camera.getPositionX(), -this.camera.getPositionY(), -this.camera.getPositionZ());
+		
+		glRotated(this.camera.getRotationX(), 1.0D, 0.0D, 0.0D);
+		glRotated(this.camera.getRotationY(), 0.0D, 1.0D, 0.0D);
+		glRotated(this.camera.getRotationZ(), 0.0D, 0.0D, 1.0D);
 		
 		this.render();
 	}
@@ -60,6 +72,22 @@ public class WorldRenderer implements IRenderer {
 	}
 	
 	/**
+	 * Gets the camera from which the scene is viewed.
+	 * @return The camera viewing the scene
+	 */
+	public Camera getCamera() {
+		return this.camera;
+	}
+	
+	/**
+	 * Sets the camera from which to view the scene.
+	 * @param camera The camera to view the scene
+	 */
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
+	
+	/**
 	 * Renders the active world. It is not necessary to expose this method
 	 * publicly, as the modularization is merely for code readability.
 	 */
@@ -71,12 +99,13 @@ public class WorldRenderer implements IRenderer {
 				for (int section = 0; section < 8; section++) {
 					if (chunk.getVboId(section) == 0) {
 						int vboId = glGenBuffersARB();
+						
 						chunk.setVboId(section, vboId);
 						chunk.setVboUpdateRequired(section, true);
 					}
 					
 					if (chunk.getVboUpdateRequired(section)) {
-						FloatBuffer buffer = BufferUtils.createFloatBuffer(3*3);
+						FloatBuffer buffer = BufferUtils.createFloatBuffer(16*16*16*128); // TODO: Load from config
 						
 						int numElements = this.chunkRenderer.renderSection(buffer, chunk, section);
 						
@@ -96,7 +125,7 @@ public class WorldRenderer implements IRenderer {
 					
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, chunk.getVboId(section));
 					glVertexPointer(3, GL_FLOAT, 0, 0L);
-					glDrawArrays(GL_TRIANGLES, 0, 3);
+					glDrawArrays(GL_TRIANGLES, 0, chunk.getNumVboElements(section));
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 					
 					glDisableClientState(GL_VERTEX_ARRAY);
