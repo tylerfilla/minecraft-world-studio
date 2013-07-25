@@ -44,7 +44,7 @@ public class BlockRenderer implements IComponentRenderer {
 			buffer.put(vZ);
 		}
 		
-		return mesh.getVertices().length/3;
+		return mesh.getVertices().length;
 	}
 	
 }
