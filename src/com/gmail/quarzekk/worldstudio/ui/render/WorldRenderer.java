@@ -48,9 +48,9 @@ public class WorldRenderer implements IRenderer {
 		
 		glTranslated(-this.camera.getPositionX(), -this.camera.getPositionY(), -this.camera.getPositionZ());
 		
-		glRotated(this.camera.getRotationX(), 1.0D, 0.0D, 0.0D);
-		glRotated(this.camera.getRotationY(), 0.0D, 1.0D, 0.0D);
-		glRotated(this.camera.getRotationZ(), 0.0D, 0.0D, 1.0D);
+		glRotated(-this.camera.getRotationX(), 1.0D, 0.0D, 0.0D);
+		glRotated(-this.camera.getRotationY(), 0.0D, 1.0D, 0.0D);
+		glRotated(-this.camera.getRotationZ(), 0.0D, 0.0D, 1.0D);
 		
 		this.render();
 	}
