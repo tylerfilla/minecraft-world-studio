@@ -64,8 +64,8 @@ public class DisplayThread extends Thread {
 		
 		this.displayTitle = "Minecraft World Studio";
 		
-		this.displaySizeX = 800;
-		this.displaySizeY = 600;
+		this.displaySizeX = 800; // TODO: Load from config
+		this.displaySizeY = 600; // TODO: Load from config
 	}
 	
 	@Override
@@ -100,8 +100,8 @@ public class DisplayThread extends Thread {
 	private void createDisplay() throws LWJGLException {
 		Display.setDisplayMode(new DisplayMode(this.displaySizeX, this.displaySizeY));
 		Display.setTitle(this.displayTitle);
-		Display.setIcon(new ByteBuffer[0]);
-		Display.setResizable(true);
+		Display.setIcon(new ByteBuffer[0]); // TODO: Icon reference
+		Display.setResizable(true); // TODO: Load from config
 		Display.create();
 		
 		if (!GLContext.getCapabilities().GL_ARB_vertex_buffer_object) {
@@ -111,6 +111,12 @@ public class DisplayThread extends Thread {
 		}
 		
 		glViewport(0, 0, Display.getWidth(), Display.getHeight());
+		
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 	}
 	
 	/**
@@ -133,6 +139,8 @@ public class DisplayThread extends Thread {
 		this.shouldContinue = this.shouldContinue && !Display.isCloseRequested();
 		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
+		Display.sync(60); // TODO: Load from config
 	}
 	
 }
