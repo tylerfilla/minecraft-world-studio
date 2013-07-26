@@ -33,11 +33,7 @@ public class BlockMeshParser implements IConfigParser {
 		return this.meshFile;
 	}
 	
-	/**
-	 * Parses the contents of the mesh file and stores extracted data. It is
-	 * necessary to parse the file prior to accessing any data.
-	 * @throws IOException If an I/O error occurs while reading the mesh file
-	 */
+	@Override
 	public void parse() throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(this.meshFile.getFile())));
 		
