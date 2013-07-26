@@ -79,8 +79,18 @@ public class DisplayThread extends Thread {
 		while (this.shouldContinue) {
 			this.updateDisplay();
 			
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+			
 			this.userInterface.worldRenderer.update();
 			this.userInterface.studioRenderer.update();
+			
+			Display.sync(60); // TODO: Load from config
 		}
 		
 		this.destroyDisplay();
@@ -137,10 +147,6 @@ public class DisplayThread extends Thread {
 		}
 		
 		this.shouldContinue = this.shouldContinue && !Display.isCloseRequested();
-		
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		Display.sync(60); // TODO: Load from config
 	}
 	
 }

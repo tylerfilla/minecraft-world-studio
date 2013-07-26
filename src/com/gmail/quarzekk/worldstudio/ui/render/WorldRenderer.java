@@ -36,15 +36,13 @@ public class WorldRenderer implements IRenderer {
 	
 	@Override
 	public void update() {
+		this.camera.update();
+		
 		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
 		
 		gluPerspective(45.0F, (float) Display.getWidth()/(float) Display.getHeight(), 0.0F, 100.0F);
 		
 		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		
-		this.camera.update();
 		
 		glTranslated(-this.camera.getPositionX(), -this.camera.getPositionY(), -this.camera.getPositionZ());
 		
