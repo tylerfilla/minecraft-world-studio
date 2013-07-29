@@ -20,6 +20,9 @@ Minecraft World Studio is expected to include the following:
 * Support for custom fonts via Java AWT
 * Support for scripting languages with an integrated script editor
 
+Expect to see something like this when you start it up:
+![alt text](https://dl.dropboxusercontent.com/u/95686525/Minecraft-World-Studio-UI-Main-Menu-Draft-1.png "UI Draft 1 - Not a Screenshot")
+
 Contact
 -------
 
