@@ -5,6 +5,3 @@
 /.settings
 /.classpath
 /.project
-
-# Textures
-/res/*/texture
