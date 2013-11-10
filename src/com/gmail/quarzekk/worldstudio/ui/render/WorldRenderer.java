@@ -9,16 +9,17 @@ import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.Display;
 
-import com.gmail.quarzekk.worldstudio.ui.render.component.ChunkRenderer;
+import com.gmail.quarzekk.worldstudio.ui.render.component.ChunkSectionRenderer;
+//import com.gmail.quarzekk.worldstudio.ui.render.component.ChunkRenderer;
 import com.gmail.quarzekk.worldstudio.world.Chunk;
 import com.gmail.quarzekk.worldstudio.world.World;
 
 public class WorldRenderer implements IRenderer {
 	
 	/**
-	 * The ChunkRenderer from which this renderer gets chunk render data.
+	 * The ChunkSectionRenderer from which this renderer gets chunk section render data.
 	 */
-	private ChunkRenderer chunkRenderer;
+	private ChunkSectionRenderer chunkSectionRenderer;
 	
 	/**
 	 * A reference to the world with which this renderer is concerned.
@@ -31,7 +32,7 @@ public class WorldRenderer implements IRenderer {
 	private Camera camera;
 	
 	public WorldRenderer() {
-		this.chunkRenderer = new ChunkRenderer();
+		this.chunkSectionRenderer = new ChunkSectionRenderer();
 	}
 	
 	@Override
@@ -44,11 +45,11 @@ public class WorldRenderer implements IRenderer {
 		
 		glMatrixMode(GL_MODELVIEW);
 		
-		glTranslated(-this.camera.getPositionX(), -this.camera.getPositionY(), -this.camera.getPositionZ());
-		
 		glRotated(-this.camera.getRotationX(), 1.0D, 0.0D, 0.0D);
 		glRotated(-this.camera.getRotationY(), 0.0D, 1.0D, 0.0D);
 		glRotated(-this.camera.getRotationZ(), 0.0D, 0.0D, 1.0D);
+		
+		glTranslated(-this.camera.getPositionX(), -this.camera.getPositionY(), -this.camera.getPositionZ());
 		
 		this.render();
 	}
@@ -103,9 +104,9 @@ public class WorldRenderer implements IRenderer {
 					}
 					
 					if (chunk.getVboUpdateRequired(section)) {
-						FloatBuffer buffer = BufferUtils.createFloatBuffer(16*16*16*128); // TODO: Load from config
+						FloatBuffer buffer = BufferUtils.createFloatBuffer(16*16*16*24); // TODO: Load from config
 						
-						int numElements = this.chunkRenderer.renderSection(buffer, chunk, section);
+						int numElements = this.chunkSectionRenderer.renderChunkSection(buffer, chunk, section);
 						
 						buffer.flip();
 						
@@ -120,6 +121,7 @@ public class WorldRenderer implements IRenderer {
 					glPushMatrix();
 					
 					glEnableClientState(GL_VERTEX_ARRAY);
+					glEnableClientState(GL_COLOR_ARRAY);
 					
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, chunk.getVboId(section));
 					glVertexPointer(3, GL_FLOAT, 0, 0L);
@@ -127,6 +129,7 @@ public class WorldRenderer implements IRenderer {
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 					
 					glDisableClientState(GL_VERTEX_ARRAY);
+					glDisableClientState(GL_COLOR_ARRAY);
 					
 					glPopMatrix();
 				}
