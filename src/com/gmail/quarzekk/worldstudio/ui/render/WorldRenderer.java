@@ -10,7 +10,6 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.Display;
 
 import com.gmail.quarzekk.worldstudio.ui.render.component.ChunkSectionRenderer;
-//import com.gmail.quarzekk.worldstudio.ui.render.component.ChunkRenderer;
 import com.gmail.quarzekk.worldstudio.world.Chunk;
 import com.gmail.quarzekk.worldstudio.world.World;
 
@@ -121,7 +120,6 @@ public class WorldRenderer implements IRenderer {
 					glPushMatrix();
 					
 					glEnableClientState(GL_VERTEX_ARRAY);
-					glEnableClientState(GL_COLOR_ARRAY);
 					
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, chunk.getVboId(section));
 					glVertexPointer(3, GL_FLOAT, 0, 0L);
@@ -129,7 +127,6 @@ public class WorldRenderer implements IRenderer {
 					glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 					
 					glDisableClientState(GL_VERTEX_ARRAY);
-					glDisableClientState(GL_COLOR_ARRAY);
 					
 					glPopMatrix();
 				}
