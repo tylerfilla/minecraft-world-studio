@@ -35,7 +35,7 @@ public class TagList extends TagBase {
 	}
 	
 	/**
-	 * Constructs a new TagCompound with the given name.
+	 * Constructs a new TagList with the given name.
 	 * @param name The name for this tag
 	 */
 	public TagList(String name) {
@@ -44,7 +44,7 @@ public class TagList extends TagBase {
 	}
 	
 	/**
-	 * Gets all children tags contained within this compound.
+	 * Gets all children tags contained within this list.
 	 * @return An ArrayList of contained TagBases in the form of a Collection
 	 */
 	public Collection<TagBase> getChildren() {
