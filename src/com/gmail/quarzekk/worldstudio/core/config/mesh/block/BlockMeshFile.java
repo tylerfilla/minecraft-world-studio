@@ -22,24 +22,9 @@ public class BlockMeshFile implements IConfigFile {
 	private int blockData;
 	
 	/**
-	 * The parsed texture tile U.
+	 * The parsed texture location.
 	 */
-	private int textureTileU;
-	
-	/**
-	 * The parsed texture tile V.
-	 */
-	private int textureTileV;
-	
-	/**
-	 * The parsed texture tile span U.
-	 */
-	private int textureTileSpanU;
-	
-	/**
-	 * The parsed texture tile span V.
-	 */
-	private int textureTileSpanV;
+	private String textureLocation;
 	
 	/**
 	 * The parsed vertex data.
@@ -64,10 +49,7 @@ public class BlockMeshFile implements IConfigFile {
 		
 		this.blockId = -1;
 		this.blockData = -1;
-		this.textureTileU = -1;
-		this.textureTileV = -1;
-		this.textureTileSpanU = -1;
-		this.textureTileSpanV = -1;
+		this.textureLocation = "";
 		
 		// Max of 128 vertices per mesh
 		this.vertexData = new float[128][3];
@@ -107,51 +89,15 @@ public class BlockMeshFile implements IConfigFile {
 	}
 	
 	/**
-	 * Gets the parsed texture tile U.
+	 * Gets the parsed texture location.
 	 * @return The parsed texture tile U
 	 */
-	public int getTextureTileU() {
-		return this.textureTileU;
+	public String getTextureLocation() {
+		return this.textureLocation;
 	}
 	
-	protected void setTextureTileU(int textureTileU) {
-		this.textureTileU = textureTileU;
-	}
-	
-	/**
-	 * Gets the parsed texture tile V.
-	 * @return The parsed texture tile V
-	 */
-	public int getTextureTileV() {
-		return this.textureTileV;
-	}
-	
-	protected void setTextureTileV(int textureTileV) {
-		this.textureTileV = textureTileV;
-	}
-	
-	/**
-	 * Gets the parsed texture tile span U.
-	 * @return The parsed texture tile span U
-	 */
-	public int getTextureTileSpanU() {
-		return this.textureTileSpanU;
-	}
-	
-	protected void setTextureTileSpanU(int textureTileSpanU) {
-		this.textureTileSpanU = textureTileSpanU;
-	}
-	
-	/**
-	 * Gets the parsed texture tile span V.
-	 * @return The parsed texture tile span V
-	 */
-	public int getTextureTileSpanV() {
-		return this.textureTileSpanV;
-	}
-	
-	protected void setTextureTileSpanV(int textureTileSpanV) {
-		this.textureTileSpanV = textureTileSpanV;
+	protected void setTextureLocation(String textureLocation) {
+		this.textureLocation = textureLocation;
 	}
 	
 	/**
