@@ -9,7 +9,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GLContext;
 
-import com.gmail.quarzekk.worldstudio.WorldStudio;
 import com.gmail.quarzekk.worldstudio.ui.render.StudioRenderer;
 import com.gmail.quarzekk.worldstudio.ui.render.WorldRenderer;
 
@@ -22,10 +21,14 @@ import com.gmail.quarzekk.worldstudio.ui.render.WorldRenderer;
 public class DisplayThread extends Thread {
 	
 	/**
-	 * A reference to the UserInterface object that constructed this
-	 * DisplayThread.
+	 * The WorldRenderer run from the display thread.
 	 */
-	private UserInterface userInterface;
+	private WorldRenderer worldRenderer;
+	
+	/**
+	 * The StudioRenderer run from the display thread.
+	 */
+	private StudioRenderer studioRenderer;
 	
 	/**
 	 * Whether or not this thread should continue to operate.
@@ -52,13 +55,11 @@ public class DisplayThread extends Thread {
 	 * UserInterface.
 	 * @param userInterface A reference to the UserInterface
 	 */
-	public DisplayThread(UserInterface userInterface) {
+	public DisplayThread() {
 		super("worldstudio.display");
 		
-		this.userInterface = userInterface;
-		
-		this.userInterface.worldRenderer = new WorldRenderer();
-		this.userInterface.studioRenderer = new StudioRenderer();
+		this.worldRenderer = new WorldRenderer();
+		this.studioRenderer = new StudioRenderer();
 		
 		this.shouldContinue = true;
 		
@@ -87,8 +88,8 @@ public class DisplayThread extends Thread {
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
 			
-			this.userInterface.worldRenderer.update();
-			this.userInterface.studioRenderer.update();
+			this.worldRenderer.update();
+			this.studioRenderer.update();
 			
 			Display.sync(60); // TODO: Load from config
 		}
@@ -117,7 +118,7 @@ public class DisplayThread extends Thread {
 		if (!GLContext.getCapabilities().GL_ARB_vertex_buffer_object) {
 			System.err.println("Vertex buffer objects are unsupported by the graphics card.");
 			this.destroyDisplay();
-			WorldStudio.instance.exit(1);
+			System.exit(1);
 		}
 		
 		glViewport(0, 0, Display.getWidth(), Display.getHeight());
@@ -147,6 +148,22 @@ public class DisplayThread extends Thread {
 		}
 		
 		this.shouldContinue = this.shouldContinue && !Display.isCloseRequested();
+	}
+	
+	/**
+	 * Gets a reference to the WorldRenderer on the display thread.
+	 * @return A reference to the WorldRenderer
+	 */
+	public WorldRenderer getWorldRenderer() {
+		return this.worldRenderer;
+	}
+	
+	/**
+	 * Gets a reference to the StudioRenderer on the display thread.
+	 * @return A reference to the StudioRenderer
+	 */
+	public StudioRenderer getStudioRenderer() {
+		return this.studioRenderer;
 	}
 	
 }
