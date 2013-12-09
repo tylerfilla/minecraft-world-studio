@@ -1,0 +1,64 @@
+#
+# Minecraft World Studio
+# Generic Block Mesh
+#
+
+# Lower-front
+vertex 0  0,0,0
+vertex 1  1,0,0
+vertex 2  1,1,0
+
+# Upper-front
+vertex 3  1,1,0
+vertex 4  0,1,0
+vertex 5  0,0,0
+
+# Lower-right
+vertex 6  1,0,0
+vertex 7  1,0,1
+vertex 8  1,1,1
+
+# Upper-right
+vertex 9  1,1,1
+vertex 10 1,1,0
+vertex 11 1,0,0
+
+# Lower-back
+vertex 12 1,0,1
+vertex 13 0,0,1
+vertex 14 0,1,1
+
+# Upper-back
+vertex 15 0,1,1
+vertex 16 1,1,1
+vertex 17 1,0,1
+
+# Lower-left
+vertex 18 0,0,1
+vertex 19 0,0,0
+vertex 20 0,1,0
+
+# Upper-left
+vertex 21 0,1,0
+vertex 22 0,1,1
+vertex 23 0,0,1
+
+# Lower-bottom
+vertex 24 0,0,1
+vertex 25 1,0,1
+vertex 26 1,0,0
+
+# Upper-bottom
+vertex 27 1,0,0
+vertex 28 0,0,0
+vertex 29 0,0,1
+
+# Lower-top
+vertex 30 0,1,0
+vertex 31 1,1,0
+vertex 32 1,1,1
+
+# Upper-top
+vertex 33 1,1,1
+vertex 34 0,1,1
+vertex 35 0,1,0
