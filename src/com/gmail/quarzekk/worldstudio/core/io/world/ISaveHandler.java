@@ -1,7 +1,6 @@
 package com.gmail.quarzekk.worldstudio.core.io.world;
 
 import com.gmail.quarzekk.worldstudio.world.Chunk;
-import com.gmail.quarzekk.worldstudio.world.ChunkCoordinates;
 import com.gmail.quarzekk.worldstudio.world.WorldInformation;
 
 /**
@@ -28,10 +27,11 @@ public interface ISaveHandler {
 	/**
 	 * Loads the chunk from the world save described by this save handler at
 	 * the given coordinates.
-	 * @param coords The coordinates of the chunk to load
+	 * @param coordX The x-coordinate of the chunk to load
+	 * @param coordY The y-coordinate of the chunk to load
 	 * @return The chunk loaded from the world save at the given coordinates
 	 */
-	public Chunk loadChunk(ChunkCoordinates coords);
+	public Chunk loadChunk(int coordX, int coordZ);
 	
 	/**
 	 * Saves a chunk to the world save described by this save handler. The
