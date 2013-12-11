@@ -105,7 +105,7 @@ public class WorldRenderer implements IRenderer {
 					if (chunk.getVboUpdateRequired(section)) {
 						FloatBuffer buffer = BufferUtils.createFloatBuffer(16*16*16*24); // TODO: Load from config
 						
-						int numElements = this.chunkSectionRenderer.renderChunkSection(buffer, chunk, section);
+						int numElements = this.chunkSectionRenderer.renderChunkSection(buffer, this.world, chunk, section);
 						
 						buffer.flip();
 						
