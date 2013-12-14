@@ -5,6 +5,15 @@
 # An average cubish block
 #
 
+# Face grouping data
+face GENERIC_FRONT  0,1,2,3,4,5
+face GENERIC_RIGHT  6,7,8,9,10,11
+face GENERIC_BACK   12,13,14,15,16,17
+face GENERIC_LEFT   18,19,20,21,22,23
+face GENERIC_BOTTOM 24,25,26,27,28,29
+face GENERIC_TOP    30,31,32,33,34,35
+
+# Relative vertex coordinate data
 # Lower-front
 vertex 0  0,0,0
 vertex 1  1,0,0
